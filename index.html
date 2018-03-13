@@ -232,6 +232,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/实现51单片机单个按键长按、短按功能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mrxu123">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XU_JIAN_FENG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/13/实现51单片机单个按键长按、短按功能/" itemprop="url">实现51单片机单个按键长按、短按功能</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-13T14:41:22+08:00">
+                2018-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们在项目中常常需要在只有一个按键的情况下，来实现长按执行某个功能，短按执行另一个功能。<br>鉴于此，用51搭的核心板实测，亲测可行。好了，废话少说，简单粗暴，直接贴上程序结构。</p>
+<p>//定义一个按键按下的标志位press_flag<br>//count： 定义全局变量用来存放定时器计数变量</p>
+<p>主函数（）<br>{<br>    while(1)<br>    {<br>        if(key == 0)<br>        {<br>            Delay10ms();<br>            if(key == 0)<br>            {<br>                press_flag = 1;<br>                TR0 =1;  //开启定时器<br>                while(!key);<br>                TR0;  //关闭定时器<br>            }<br>        }</p>
+<pre><code>    if(press_flag)
+    {
+        if(count &gt;= 1500)  //这里的数据根据实际情况需求来定
+        {
+            //长按功能
+        }
+
+        else
+        {
+            //短按操作功能
+        }
+        //每次按完松开，按键按下标志位和定时计数变量都清零
+        press_flag = 0;
+        count = 0;
+    }
+}
+</code></pre><p>}</p>
+<p>在进入while大循环中，先要配置定时器。</p>
+<p>在while中核心是：使用两个if块判断,第一个if块判断按键是否按下，在第一个if块里面只进行按键按下标志位设置和定时器计数。</p>
+<p>在第二个if块里根据第一个if块定时器计数来执行长短按功能，记得在退出第二个if块时，按键按下标志位（press_flag）和定时器</p>
+<p>计数变量（count）都要清零。</p>
+<p>……</p>
+<p>定时器配置和中断服务程序就不贴出来了。</p>
+<p>基本逻辑就是这样了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/13/千图网某频道图片爬取/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -525,7 +671,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
